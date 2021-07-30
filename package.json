@@ -16,8 +16,9 @@
   "author": "joeflateau",
   "license": "ISC",
   "dependencies": {
-    "@types/doubleclick-gpt": "^2019111201.0.1",
-    "fs-extra": "^8.1.0"
+    "@types/doubleclick-gpt": "latest",
+    "fs-extra": "^8.1.0",
+    "p-lazy": "^4.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",

@@ -1,11 +1,7 @@
-import { AsyncLazy } from "./async-lazy";
+import PLazy from "p-lazy";
 import { loadScript } from "./loadScript";
 
-const loadGpt = new AsyncLazy(() => {
-  return loadScript("https://securepubads.g.doubleclick.net/tag/js/gpt.js");
-});
-
-export async function googletagLoader() {
-  await loadGpt;
+export const googletagLoader = PLazy.from(async () => {
+  await loadScript("https://securepubads.g.doubleclick.net/tag/js/gpt.js");
   return googletag;
-}
+});

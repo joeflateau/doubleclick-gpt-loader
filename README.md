@@ -1,19 +1,27 @@
-# gpt-loader
+# doubleclick-gpt-loader
 
-Easy loading Doubleclick GPT script and getting a reference to googletag
+Easy loading Doubleclick GPT script and get a reference to googletag.
 
-This project was bootstrapped with [TSPx](https://github.com/joeflateau/tspx).
+## Rationale
 
-## Next steps
+I wrote this because I don't like my code depending on globals that may or may not have been actually created and I don't like jumping through hoops to load `@types/doubleclick-gpt`. With `doubleclick-gpt-loader`, you can import gpt as a typed module.
 
-### `npm run test`
+`doubleclick-gpt-loader` exports a [p-lazy](https://www.npmjs.com/package/p-lazy) lazy Promise that is resolved with a reference to `googletag` typed with types from [@types/doubleclick-gpt](https://www.npmjs.com/package/@types/doubleclick-gpt)
 
-This will run the test suite. Tests are colocated with code and named `*.spec.ts`.
+## Usage
 
-### `npm publish`
+```typescript
+import { googletagLoader } from "doubleclick-gpt-loader";
 
-This is how you publish to npm. This project has a `prepare` script that compiles the `.ts` to `.js` and `.d.ts`. It also has a `prepublishOnly` script that runs the test suite. Npm will call these scripts automatically as part of the publishing flow so you can be sure you are always publishing the compiled, tested package.
+async function showAds() {
+  const googletag = await googletagLoader;
 
-### `npm run prepare` or `npm run build`
+  const slot = googletag
+    .defineSlot("/12345678/my-ad-slot", [320, 50], "my-ad-slot")
+    .addService(googletag.pubads());
 
-You should not need to run these manually, the `prepare`/`prepublishOnly` scripts when you publish should be enough, but if you find it necessary, these are here for you.
+  googletag.enableServices();
+
+  googletag.display(slot);
+}
+```
