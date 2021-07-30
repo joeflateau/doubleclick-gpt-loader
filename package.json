@@ -4,10 +4,8 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "build": "tsc",
-    "prepare": "tsc",
-    "prepublishOnly": "npm run test"
+    "prepare": "tsc"
   },
   "files": [
     "dist"
