@@ -1,1 +1,1 @@
-export { googletagFn as googletag } from "./googletagFn";
+export { googletagLoader } from "./googletagLoader";
